@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jivan & Sanika — Wedding</title>
+ 
+  <link rel="icon" type="image/png" href="SJlogo.avif">
+
+   
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Inter',system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      line-height:1.5;color:#2d2d2d;
+      background:#F8F7DD;
+      background-attachment:fixed;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* ----------------- Navbar ----------------- */
+    .nav {
+      position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;
+      padding:14px 24px;z-index:50;
+      background:#DEF2F1;
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(0,0,0,0.05);
+    }
+    .nav .brand{
+      font-family:'Playfair Display';
+      font-size:1.25rem;
+      font-weight:700;
+      color:#2B7A78;
+    }
+    .nav .links{display:flex;gap:14px}
+    .nav .links a{
+      padding:8px 10px;border-radius:6px;font-size:0.95rem;
+      transition:0.3s;
+    }
+    .nav .links a:hover{background:rgba(234, 0, 0, 0.1);color:#0a0501}
+    .nav .cta{background:#7c3aed;color:white;padding:8px 12px;border-radius:8px;font-weight:600}
+
+    /* ----------------- Hero with Video ----------------- */
+    .hero {
+      height:85vh;
+      min-height:520px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      margin-top:62px;
+      color:white;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.5));
+      z-index:1;
+    }
+
+    .bg-video {
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+    }
+
+    .hero .inner {
+      position:relative;
+      z-index:2;
+      max-width:900px;
+    }
+
+    .hero h1{font-family:'Playfair Display';font-size:3rem;margin-bottom:10px;letter-spacing:0.6px}
+    .hero p.lead{font-size:1.1rem;margin-bottom:20px}
+    .hero .date{
+      background:rgba(255,255,255,0.2);padding:10px 16px;border-radius:999px;
+      font-weight:600;display:inline-block;
+    }
+
+    /* ----------------- Sections ----------------- */
+    .container{max-width:1000px;margin:50px auto;padding:0 18px}
+    section h2{
+      font-family:'Playfair Display';font-size:1.8rem;margin-bottom:14px;color:#5b21b6;text-align:center;
+    }
+
+    .story{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin-top:20px}
+    .story .photo{flex:0 0 240px;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+    .story p{flex:1;font-size:1rem;color:#333}
+
+  .countdown {
+  text-align: center;
+  margin: 40px auto;
+  font-family: 'Playfair Display', serif;
+  color: #5b21b6;
+}
+
+#timer {
+  margin-top: 14px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: inline-block;           /* center box */
+  border: 3px solid #f60000;       /* purple border */
+  padding: 15px 25px;
+  border-radius: 12px;             /* rounded corners */
+  background: #fdf6ff;             /* light background */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* little shadow */
+}
+
+#timer span {
+  color: #7c3aed;
+  font-size: 1.6rem;
+  margin: 0 6px;
+}
+
+
+
+    .events{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px}
+    .event-card{
+      flex:1;min-width:260px;
+      background:linear-gradient(135deg,#fff,#fdf6ff);
+      padding:18px;border-radius:12px;
+      box-shadow:0 8px 30px rgba(13,13,27,0.08);
+      border:1px solid #f0e9ff;
+    }
+    .event-card time{display:block;font-weight:700;margin-bottom:6px;color:#7c3aed}
+
+    .map-wrap{border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+
+    .gallery{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:14px;margin-top:20px;
+    }
+    .gallery img{
+      width:100%;height:260px;object-fit:cover;border-radius:10px;cursor:pointer;
+      transition:0.3s;
+    }
+    .gallery img:hover{transform:scale(1.03)}
+
+    .rsvp-box{
+      max-width:520px;margin:auto;margin-top:30px;
+      background:white;padding:20px;border-radius:14px;
+      box-shadow:0 12px 40px rgba(12,12,30,0.08);
+      border:1px solid #eee;
+    }
+    .rsvp-box label{display:block;font-size:0.9rem;margin:10px 0 6px;color:#333}
+    .rsvp-box input,.rsvp-box select, .rsvp-box textarea{
+      width:100%;padding:10px;border:1px solid #e6e2e9;border-radius:8px;font-size:0.95rem
+    }
+    .rsvp-box button{
+      margin-top:14px;background:#7c3aed;color:#fff;padding:10px 14px;border-radius:8px;font-weight:600;border:0;cursor:pointer;
+      transition:0.3s;
+    }
+    .rsvp-box button:hover{background:#6d28d9}
+
+    footer{padding:30px 18px;text-align:center;color:#666;font-size:0.95rem;margin-top:30px}
+
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:60}
+    .modal img{max-width:92vw;max-height:86vh;border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,0.6)}
+    .corner-img {
+ 
+  display: block;
+  margin: 10px auto 0;   /* auto = center */
+  width: 250px;   /* size control */
+  height: 200px;
+}
+.corner-img img {
+  width: 250px; 
+  height: 200px;
+}
+
+    @media (max-width:720px){
+      .hero h1{font-size:2.2rem}
+      .nav .links{display:none}
+      .story{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="brand">Jivan ♥ Sanika</div>
+    <div class="links">
+      <a href="#story">Our Story</a>
+      <a href="#events">Events</a>
+      <a href="#venue">Venue</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#rsvp" class="cta">RSVP</a>
+    </div>
+  </nav>
+
+  <!-- HERO with Background Video -->
+  <header class="hero">
+    <!-- 🔽 इथे तुझा video फाइल / link टाक -->
+    <video class="bg-video" autoplay muted loop>
+      <source src="video1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="inner">
+      <h1>Jivan & Sanika</h1>
+      <p class="lead">आम्ही लग्नाच्या आनंदात आपले स्वागत करतो — कृपया या विशेष दिवशी आमच्यासोबत सामील व्हा</p>
+      <div class="date">26 October 2025 • Pune, Maharashtra</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- STORY -->
+    <section id="story" class="container">
+      <h2>Our Story</h2>
+      <div class="story">
+        <div class="photo"><img src="images/image5.png" alt="couple"></div>
+        <p>आम्ही कॉलेजमध्ये भेटलो, मित्रत्व वाढले, रोजचे छोटे क्षण आणि हसणं या गोष्टींनी आपली वाटचाल प्रेमात बदलली. आता आमच्या सगळ्या प्रियजनांसह हा आनंद साजरा करायला आवर्जून येण्याचे आमंत्रण देतो.</p>
+      </div>
+    </section>
+    <!-- Countdown Section -->
+<section class="countdown">
+  <h2>Wedding Countdown</h2>
+  <div id="timer">
+    <span id="days">00</span> Days 
+    <span id="hours">00</span> Hours 
+    <span id="minutes">00</span> Min 
+    <span id="seconds">00</span> Sec
+  </div>
+</section>
+
+
+    <!-- EVENTS -->
+    <section id="events" class="container">
+      <h2>Events & Schedule</h2>
+      <div class="events">
+        <article class="event-card">
+          <time>26 Oct • 10:00 AM</time>
+          <strong>Engagement & Rituals</strong>
+          <p style="margin-top:8px;color:#555">The Grand Palace, Hall A — Puja, Rituals & Lunch</p>
+        </article>
+        <article class="event-card">
+          <time>26 Oct • 07:00 PM</time>
+          <strong>Reception</strong>
+          <p style="margin-top:8px;color:#555">The Grand Palace, Lawn — Dinner & Music</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- VENUE -->
+    <section id="venue" class="container">
+      <h2>Venue & Directions</h2>
+      <div class="map-wrap" style="height:360px">
+        <iframe width="100%" height="100%" frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.1234567890123!2d73.856255615!3d18.5204303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sPune!2sPune!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin"
+          allowfullscreen></iframe>
+      </div>
+      <p style="margin-top:12px;color:#555">Parking available at venue; nearby hotels: Hotel A, Hotel B (5–10 min drive).</p>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="container">
+      <h2>Gallery</h2>
+      <div class="gallery" id="galleryGrid">
+        <img src="images/image2.png" alt="mem1">
+        <img src="images/image3.png" alt="mem2">
+        <img src="images/image4.png" alt="mem3">
+        <img src="images/Image1.png" alt="mem4">
+      </div>
+    </section>
+
+    <!-- RSVP -->
+       <!-- <h2>RSVP</h2>
+      <div class="rsvp-box">
+        <form id="rsvpForm">
+          <label for="guestName">Full Name</label>
+          <input id="guestName" name="name" type="text" required placeholder="तुमचं पूर्ण नाव">
+
+          <label for="attend">Will you attend?</label>
+          <select id="attend" name="attendance" required>
+            <option value="">--- निवडा ---</option>
+            <option value="Yes">होय, उपस्थित राहीन</option>
+            <option value="No">नाही, खूप दु:ख होते</option>
+          </select>
+
+          <label for="count">Number of guests (तुमच्यासह)</label>
+          <input id="count" name="guests" type="number" min="1" value="1">
+
+          <label for="meal">Meal preference (ऐच्छिक)</label>
+          <select id="meal" name="meal">
+            <option value="">--- निवडा ---</option>
+            <option value="Veg">Vegetarian</option>
+            <option value="Non-Veg">Non-Veg</option>
+            <option value="Jain">Jain</option>
+          </select>
+
+          <label for="msg">Message (ऐच्छिक)</label>
+          <textarea id="msgField" name="message" rows="3" placeholder="तुमचा संदेश..."></textarea>
+
+          <button type="submit">Submit RSVP</button>
+          <p id="formStatus" style="margin-top:10px;color:#2a7a2a;display:none"></p>
+        </form>
+      </div>
+    </section> <section id="rsvp" class="container"> -->
+  
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="modal" id="lightbox">
+    <img src="" alt="Large view">
+  </div>
+
+  <footer>
+  <div class="corner-img">
+  <img src="images/Sanai.png"alt = "decoration">
+   © Jivan & Sanika • 2025 • Made By GS.
+</div>
+
+
+  <script>
+    const SCRIPT_URL = ""; 
+
+    const gallery = document.getElementById('galleryGrid');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    gallery.addEventListener('click', (e) => {
+      const img = e.target.closest('img');
+      if (!img) return;
+      lightboxImg.src = img.src;
+      lightbox.style.display = 'flex';
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    });
+
+    // Countdown Timer
+const weddingDate = new Date("Oct 26, 2025 19:00:00").getTime();  // बदल: तुझी वेळ टाक
+
+const timerFunc = setInterval(function() {
+  const now = new Date().getTime();
+  const diff = weddingDate - now;
+
+  if (diff <= 0) {
+    document.getElementById("timer").innerHTML = "🎉 The Wedding Day is Here! 🎉";
+    clearInterval(timerFunc);
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+}, 1000);
+
+
+    document.querySelectorAll('.nav a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+      });
+    });
+
+    const form = document.getElementById('rsvpForm');
+    const statusP = document.getElementById('formStatus');
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      statusP.style.display = 'none';
+      const data = {
+        name: form.name.value.trim(),
+        attendance: form.attendance.value,
+        guests: form.guests.value || '1',
+        meal: form.meal.value || '',
+        message: form.message.value || '',
+        timestamp: new Date().toISOString()
+      };
+      if(!data.name || !data.attendance){
+        alert('कृपया नाव आणि उपस्थिती निवडा');
+        return;
+      }
+      try {
+        if (SCRIPT_URL) {
+          const resp = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+          });
+          if (!resp.ok) throw new Error('Network error');
+          statusP.style.color = '#2a7a2a';
+          statusP.textContent = 'आपला RSVP नोंदवला गेला आहे — धन्यवाद!';
+          statusP.style.display = 'block';
+          form.reset();
+        } else {
+          const existing = JSON.parse(localStorage.getItem('rsvp_demo') || '[]');
+          existing.push(data);
+          localStorage.setItem('rsvp_demo', JSON.stringify(existing));
+          statusP.style.color = '#2a7a2a';
+          statusP.textContent = 'Demo: RSVP localStorage मध्ये सेव्ह झाले.';
+          statusP.style.display = 'block';
+          form.reset();
+          console.log('Saved demo RSVPs:', existing);
+        }
+      } catch (err) {
+        statusP.style.color = '#a33';
+        statusP.textContent = 'त्रुटी: RSVP सबमिट होत नाहीय. कृपया पुन्हा प्रयत्न करा.';
+        statusP.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
